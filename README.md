@@ -1,4 +1,4 @@
-##Instalación paso a paso del Frontend
+#Instalación paso a paso del Frontend
 
 Paso 1: Instalar react y configurar el entorno siguiendo la [Documentación oficial](https://reactnative.dev/docs/environment-setup?guide=native&package-manager=npm).
 
