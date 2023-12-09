@@ -13,12 +13,6 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
-
-import DatePicker from 'react-native-date-picker';
-import axios from 'axios';
-import {URL} from '../helpers/index';
-const endpoint = URL;
 const Form = props => {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -73,7 +67,7 @@ const Form = props => {
 
   const update = async (updatedProfile) => {
     try {
-      const response = await UserApi.put(`/appointment/${id}`, {
+      const response = await UserApi.put(`/profile/${id}`, {
         name: updatedProfile.name,
         last_name: updatedProfile.last_name,
         email: updatedProfile.email,
@@ -106,14 +100,14 @@ const Form = props => {
     };
     if (id) {
       //se edita el paciente
-      newPatient.id = id;
-      console.log(newPatient);
-      update(newPatient);
-      const pacientesActualizados = pacientes.map(pacienteState =>
-        pacienteState.id === newPatient.id ? newPatient : pacienteState,
+      newProfile.id = id;
+      console.log(newProfile);
+      update(newProfile);
+      const profileUpdated = profiles.map(profileState =>
+        profileState.id === newProfile.id ? newProfile : profileState,
       );
-      setPacientes(pacientesActualizados);
-      setPacienteApp({});
+      setProfiles(profileUpdated);
+      setProfileApp({});
     } else {
         console.log(newProfile);
         console.log("No existe");
@@ -135,7 +129,7 @@ const Form = props => {
       <SafeAreaView style={styles.contenido}>
         <ScrollView>
           <Text style={styles.titulo}>
-            {pacienteObj.id ? 'Editar' : 'Nueva'}{' '}
+            {profileObj.id ? 'Editar' : 'Nueva'}{' '}
             <Text style={styles.tituloBold}>Perfil</Text>
           </Text>
 
@@ -235,7 +229,7 @@ const Form = props => {
 
 const styles = StyleSheet.create({
   contenido: {
-    backgroundColor: '#6D28D9',
+    backgroundColor: '#83C369',
     flex: 1,
   },
   titulo: {
@@ -250,7 +244,7 @@ const styles = StyleSheet.create({
   },
   btnCancelar: {
     marginVertical: 30,
-    backgroundColor: '#5827A4',
+    backgroundColor: '#000000',
     marginHorizontal: 30,
     padding: 15,
     borderRadius: 10,
@@ -287,13 +281,13 @@ const styles = StyleSheet.create({
   },
   btnNuevaCita: {
     marginVertical: 50,
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#000000',
     paddingVertical: 15,
     marginHorizontal: 30,
     borderRadius: 10,
   },
   btnNuevaCitaTexto: {
-    color: '#5827A4',
+    color: '#FFFFFF',
     textAlign: 'center',
     fontWeight: '900',
     fontSize: 16,

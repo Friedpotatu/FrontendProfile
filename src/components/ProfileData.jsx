@@ -51,7 +51,7 @@ const ProfileData = ({profile, setProfile, setModalProfile}) => {
 
 const styles = StyleSheet.create({
     contenedor: {
-        backgroundColor: '#F59E0B',
+        backgroundColor: '#6FAFD6',
         flex: 1,
     },
     titulo: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     btnCerrar: {
         marginVertical: 30,
-        backgroundColor: '#E06900',
+        backgroundColor: '#000000',
         marginHorizontal: 30,
         padding: 15,
         borderRadius: 10,

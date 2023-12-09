@@ -9,7 +9,7 @@ const Profile = ({
   ProfileEdit,
   setModalProfile,
 }) => {
-  const {name, date, id} = item;
+  const {name, id} = item;
 
   return (
     <Pressable onPress={()=>{
@@ -20,18 +20,12 @@ const Profile = ({
       <Text style={styles.label}>Perfil:</Text>
       <Text style={styles.texto}>{name}</Text>
       <View style={styles.contenedorBotones}>
-        <Pressable
-          style={[styles.btn, styles.btnEditar]}
+        <Pressable style={[styles.btn, styles.btnEditar]}
           onPress={() => {
             setModalVisible(true);
             ProfileEdit(id);
           }}>
           <Text>Editar</Text>
-        </Pressable>
-        <Pressable
-          style={[styles.btn, styles.btnEliminar]}
-          onPress={() => console.log('eliminar..')}>
-          <Text>Eliminar</Text>
         </Pressable>
       </View>
       </View>
@@ -56,22 +50,26 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     marginBottom: 10,
+    textAlign: 'center',
   },
   fecha: {
     color: '#374151',
   },
   contenedorBotones: {
-    flexDirection: 'row',
+    flexDirection: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 20,
   },
   btn: {
     paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 5,
+    width: '100%',
   },
   btnEditar: {
     backgroundColor: '#F59E0B',
+    alignItems: 'center',
   },
   btnEliminar: {
     backgroundColor: '#EF4444',
