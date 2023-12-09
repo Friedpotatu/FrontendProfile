@@ -21,6 +21,14 @@ const Form = props => {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [summary, setSummary] = useState('');
+  const [frameworkName1, setFrameworkName1] = useState('');
+  const [frameworkLevel1, setFrameworkLevel1] = useState('');
+  const [frameworkName2, setFrameworkName2] = useState('');
+  const [frameworkLevel2, setFrameworkLevel2] = useState('');
+  const [hobbieName1, setHobbieName1] = useState('');
+  const [hobbieDescription1, setHobbieDescription1] = useState('');
+  const [hobbieName2, setHobbieName2] = useState('');
+  const [hobbieDescription2, setHobbieDescription2] = useState('');
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState('');
   const [isPickerEnabled, setIsPickerEnabled] = useState(false);
@@ -49,6 +57,41 @@ const Form = props => {
       setCity(profileObj.city);
       setCountry(profileObj.country);
       setSummary(profileObj.summary);
+
+      console.log(profileObj.frameworks);
+      // Accede a los frameworks y hobbies del perfil
+      if (profileObj.frameworks) {
+        // Parsea la cadena a un array de objetos JSON
+        const frameworksArray = JSON.parse(profileObj.frameworks);
+
+        if (frameworksArray.length >= 2) {
+          const [framework1, framework2] = frameworksArray;
+
+          console.log(framework1);
+          console.log(framework2);
+
+          setFrameworkName1(framework1.name);
+          setFrameworkLevel1(framework1.level);
+
+          setFrameworkName2(framework2.name);
+          setFrameworkLevel2(framework2.level);
+        }
+      }
+
+      if (profileObj.hobbies && profileObj.hobbies.length >= 2) {
+        // Similarmente, puedes parsear la cadena de hobbies si es necesario
+        const hobbiesArray = JSON.parse(profileObj.hobbies);
+
+        if (hobbiesArray.length >= 2) {
+          const [hobbie1, hobbie2] = hobbiesArray;
+
+          setHobbieName1(hobbie1.name);
+          setHobbieDescription1(hobbie1.description);
+
+          setHobbieName2(hobbie2.name);
+          setHobbieDescription2(hobbie2.description);
+        }
+      }
     }
   }, [profileObj]);
 
@@ -74,6 +117,14 @@ const Form = props => {
         city: updatedProfile.city,
         country: updatedProfile.country,
         summary: updatedProfile.summary,
+        frameworks: [
+          { name: frameworkName1, level: frameworkLevel1 },
+          { name: frameworkName2, level: frameworkLevel2 },
+        ],
+        hobbies: [
+          { name: hobbieName1, description: hobbieDescription1 },
+          { name: hobbieName2, description: hobbieDescription2 },
+        ],
       });
     } catch (error) {
       console.error('Error al realizar la solicitud PUT (Actualización):', error.message);
@@ -97,6 +148,14 @@ const Form = props => {
       city,
       country,
       summary,
+      frameworks: [
+        { name: frameworkName1, level: frameworkLevel1 },
+        { name: frameworkName2, level: frameworkLevel2 },
+      ],
+      hobbies: [
+        { name: hobbieName1, description: hobbieDescription1 },
+        { name: hobbieName2, description: hobbieDescription2 },
+      ],
     };
     if (id) {
       //se edita el paciente
@@ -120,6 +179,14 @@ const Form = props => {
     setCity('');
     setCountry('');
     setSummary('');
+    setFrameworkName1('');
+    setFrameworkLevel1('');
+    setFrameworkName2('');
+    setFrameworkLevel2('');
+    setHobbieName1('');
+    setHobbieDescription1('');
+    setHobbieName2('');
+    setHobbieDescription2('');
     showProfiles();
     }
   };
@@ -145,6 +212,14 @@ const Form = props => {
               setCity('');
               setCountry('');
               setSummary('');
+              setFrameworkName1('');
+              setFrameworkLevel1('');
+              setFrameworkName2('');
+              setFrameworkLevel2('');
+              setHobbieName1('');
+              setHobbieDescription1('');
+              setHobbieName2('');
+              setHobbieDescription2('');
             }}>
             <Text style={styles.btnCancelarTexto}>X Cancelar</Text>
           </Pressable>
@@ -213,6 +288,86 @@ const Form = props => {
               placeholderTextColor={'#666'}
               value={summary}
               onChangeText={setSummary}
+            />
+          </View>
+
+          <View style={styles.campo}>
+            <Text style={styles.label}>Framework 1</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="nombre del framework"
+              placeholderTextColor={'#666'}
+              value={frameworkName1}
+              onChangeText={setFrameworkName1}
+            />
+          </View>
+          <View style={styles.campo}>
+          <TextInput
+              style={styles.input}
+              placeholder="nivel de conocimiento"
+              placeholderTextColor={'#666'}
+              value={frameworkLevel1}
+              onChangeText={setFrameworkLevel1}
+            />
+          </View>
+
+          <View style={styles.campo}>
+            <Text style={styles.label}>Framework 2</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="nombre del framework"
+              placeholderTextColor={'#666'}
+              value={frameworkName2}
+              onChangeText={setFrameworkName2}
+            />
+          </View>
+          <View style={styles.campo}>
+          <TextInput
+              style={styles.input}
+              placeholder="nivel de conocimiento"
+              placeholderTextColor={'#666'}
+              value={frameworkLevel2}
+              onChangeText={setFrameworkLevel2}
+            />
+          </View>
+
+          <View style={styles.campo}>
+            <Text style={styles.label}>Hobbie 1</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="nombre del Hobbie"
+              placeholderTextColor={'#666'}
+              value={hobbieName1}
+              onChangeText={setHobbieName1}
+            />
+          </View>
+          <View style={styles.campo}>
+          <TextInput
+              style={styles.input}
+              placeholder="descripcion del Hobbie"
+              placeholderTextColor={'#666'}
+              value={hobbieDescription1}
+              onChangeText={setHobbieDescription1}
+            />
+          </View>
+
+          <View style={styles.campo}>
+            <Text style={styles.label}>Hobbie 2</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="nombre del Hobbie"
+              placeholderTextColor={'#666'}
+              value={hobbieName2}
+              onChangeText={setHobbieName2}
+            />
+          </View>
+          <View style={styles.campo}>
+          <TextInput
+              style={styles.input}
+              placeholder="descripcion del Hobbie"
+              placeholderTextColor={'#666'}
+              value={hobbieDescription2}
+              onChangeText={setHobbieDescription2}
             />
           </View>
 

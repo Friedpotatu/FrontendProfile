@@ -3,6 +3,11 @@ import React from 'react';
 import { Text, SafeAreaView, View,  Pressable, StyleSheet } from 'react-native';
 
 const ProfileData = ({profile, setProfile, setModalProfile}) => {
+    const frameworksArray = JSON.parse(profile.frameworks);
+    const [framework1, framework2] = frameworksArray;
+
+    const hobbiesArray = JSON.parse(profile.hobbies);
+    const [hobbie1, hobbie2] = hobbiesArray;
 
     return (
         <SafeAreaView style={styles.contenedor}>
@@ -44,6 +49,26 @@ const ProfileData = ({profile, setProfile, setModalProfile}) => {
                     <Text style={styles.label}>Resumen:</Text>
                     <Text style={styles.valor}>{profile.summary}</Text>
                 </View>
+                <View style={styles.campo}>
+                    <Text style={styles.label}>Framework1:</Text>
+                    <Text style={styles.valor}>{framework1.name}</Text>
+                    <Text style={styles.valor}>{framework1.level}</Text>
+                </View>
+                <View style={styles.campo}>
+                    <Text style={styles.label}>Framework2:</Text>
+                    <Text style={styles.valor}>{framework2.name}</Text>
+                    <Text style={styles.valor}>{framework2.level}</Text>
+                </View>
+                <View style={styles.campo}>
+                    <Text style={styles.label}>Hobbie1:</Text>
+                    <Text style={styles.valor}>{hobbie1.name}</Text>
+                    <Text style={styles.valor}>{hobbie1.description}</Text>
+                </View>
+                <View style={styles.campo}>
+                    <Text style={styles.label}>Hobbie2:</Text>
+                    <Text style={styles.valor}>{hobbie2.name}</Text>
+                    <Text style={styles.valor}>{hobbie2.description}</Text>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -80,8 +105,8 @@ const styles = StyleSheet.create({
     },
     contenido: {
         backgroundColor: '#FFF',
-        marginHorizontal: 30,
-        borderRadius: 10,
+        marginHorizontal: 10,
+        borderRadius: 5,
         padding: 20,
         shadowColor: '#000',
         shadowOffset: {

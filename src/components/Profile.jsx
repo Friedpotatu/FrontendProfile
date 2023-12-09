@@ -9,7 +9,7 @@ const Profile = ({
   ProfileEdit,
   setModalProfile,
 }) => {
-  const {name, id} = item;
+  const {name, last_name, id, summary} = item;
 
   return (
     <Pressable onPress={()=>{
@@ -18,14 +18,15 @@ const Profile = ({
         }}>
      <View style={styles.contenedor}>
       <Text style={styles.label}>Perfil:</Text>
-      <Text style={styles.texto}>{name}</Text>
+      <Text style={styles.texto}>{name+ " " + last_name}</Text>
+      <Text style={styles.resumen}>{summary}</Text>
       <View style={styles.contenedorBotones}>
         <Pressable style={[styles.btn, styles.btnEditar]}
           onPress={() => {
             setModalVisible(true);
             ProfileEdit(id);
           }}>
-          <Text>Editar</Text>
+          <Text style={styles.btnTexto}>Editar</Text>
         </Pressable>
       </View>
       </View>
@@ -46,8 +47,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   texto: {
-    color: '#6D28D9',
+    color: '#2B83AE',
     fontSize: 24,
+    fontWeight: '700',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  resumen: {
+    color: '#0071AA',
+    fontSize: 12,
     fontWeight: '700',
     marginBottom: 10,
     textAlign: 'center',
@@ -68,8 +76,11 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   btnEditar: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#000000',
+    alignContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
+    color: '#FFF',
   },
   btnEliminar: {
     backgroundColor: '#EF4444',
